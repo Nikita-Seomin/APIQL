@@ -64,27 +64,6 @@ public class ApiQueryBuilder
 
         return combinedQuery;
     }
-    
-    
-    public string Eq(string field, object value)
-    {
-        
-        string fieldName = JsonField.GetJsonFieldName(field, value);
-        string fieldValue = JsonField.GetJsonFieldValue(field, value);
-        object parameterValue = JsonField.GetJsonPropertyValue(value);
-
-        // SQLKata Query builder, который будет использоваться
-        var query = new Query(); 
-
-        // Добавляем условие с параметром 
-        query.WhereRaw($"{fieldValue} = @{fieldName}", new { parameterName = parameterValue });
-
-        // SQLKata может возвращать строку запроса с параметрами
-        var compiledQuery = new SqlKata.Compilers.PostgresCompiler().Compile(query);
-
-        // Вернуть SQL с параметрами
-        return compiledQuery.Sql;
-    }
 
 
 
@@ -176,11 +155,11 @@ public class ApiQueryBuilder
         if (where != null)
         {
             // Предположим, что `where` представляет собой условия, например, в виде анонимного объекта или других форматов
-            _builder.Where((IEnumerable<KeyValuePair<string, object>>) where); // Или можете реализовать логику для обработки условий
+            _builder.Where(where); // Или можете реализовать логику для обработки условий
         }
     }
     
-    public Query neq(string field, object value)
+    public Query Neq(string field, object value)
     {
         string fieldName = JsonField.GetJsonFieldName(field, value);
         object fieldValue = JsonField.GetJsonFieldValue(field, value);
@@ -188,11 +167,41 @@ public class ApiQueryBuilder
         // Строим условия с помощью SqlKata
         _builder.Where(q =>
         {
-            q.WhereNot(fieldName, fieldValue);
+            q.WhereNot(fieldName, value);
             q.OrWhereNull(fieldName);
-            return null;
+            return q;
         });
+        
+        // // SQLKata может возвращать строку запроса с параметрами
+        // var compiledQuery = new PostgresCompiler().Compile(_builder);
+        //
+        // // Вернуть SQL с параметрами
+        // return compiledQuery.Sql;
         return _builder;
+    }
+    
+    public Query Eq(string field, object value)
+    {
+        
+        string fieldName = JsonField.GetJsonFieldName(field, value);
+        string fieldValue = JsonField.GetJsonFieldValue(field, value);
+        object parameterValue = JsonField.GetJsonPropertyValue(value);
+        var dictionary = new Dictionary<string, object>();
+        dictionary.Add(fieldName, value);
+        _builder.Where(dictionary);
+        return _builder;
+
+        // SQLKata Query builder, который будет использоваться
+        // var query = new Query(); 
+        //
+        // // Добавляем условие с параметром 
+        // query.WhereRaw($"{fieldValue} = @{fieldName}", new { parameterName = parameterValue });
+        //
+        // // SQLKata может возвращать строку запроса с параметрами
+        // var compiledQuery = new SqlKata.Compilers.PostgresCompiler().Compile(query);
+
+        // Вернуть SQL с параметрами
+        // return compiledQuery.Sql;
     }
 
 

@@ -26,7 +26,7 @@ internal class NotEqualsInterpreter : AbstractLanguage
                 { property.Name, property.Value },
             };
 
-            return _builder.neq(property.Name, property);
+            return _builder.Neq(property.Name, property.Value);
 
         }
 

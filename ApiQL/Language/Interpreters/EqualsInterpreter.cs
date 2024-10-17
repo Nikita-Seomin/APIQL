@@ -25,7 +25,8 @@ internal class EqualsInterpreter : AbstractLanguage
                     { property.Name, property.Value },
                 };
 
-                return dictionary;
+                // return dictionary;
+                return _builder.Eq(property.Name, property.Value);
 
             }
 

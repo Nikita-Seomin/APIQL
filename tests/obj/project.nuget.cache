@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mVAvNTcUoBNWegskGq2+/3wyICtFjhtMQhvqUNOWXkQI9q1+iGx3Qw4nHZjV/785csWqBS6vDz45ENQKbfRQGA==",
+  "dgSpecHash": "9Q4Ifm3Z2zmQtlNY04TVHkAMtDI+Pq03ZkmH8Mr2e/CZIAS1KVBmvT+lcyZF2SGomEOqpRmzU2lYfcJoe7Iq2g==",
   "success": true,
   "projectFilePath": "D:\\Работа\\dev\\ApiQLNew\\tests\\tests.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,12 @@
     "C:\\Users\\nicki\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\nicki\\.nuget\\packages\\dotnetcore.collections.paginable\\5.0.0\\dotnetcore.collections.paginable.5.0.0.nupkg.sha512",
     "C:\\Users\\nicki\\.nuget\\packages\\dotnetcore.collections.paginable.sqlkata\\5.0.0\\dotnetcore.collections.paginable.sqlkata.5.0.0.nupkg.sha512",
+    "C:\\Users\\nicki\\.nuget\\packages\\fsharp.core\\5.0.1\\fsharp.core.5.0.1.nupkg.sha512",
+    "C:\\Users\\nicki\\.nuget\\packages\\fsharp.idioms\\1.1.8\\fsharp.idioms.1.1.8.nupkg.sha512",
+    "C:\\Users\\nicki\\.nuget\\packages\\fsharp.jlinq\\1.0.0\\fsharp.jlinq.1.0.0.nupkg.sha512",
+    "C:\\Users\\nicki\\.nuget\\packages\\fsharp.literals\\2.1.4\\fsharp.literals.2.1.4.nupkg.sha512",
+    "C:\\Users\\nicki\\.nuget\\packages\\fsharpcompiler.analyzing\\1.0.3\\fsharpcompiler.analyzing.1.0.3.nupkg.sha512",
+    "C:\\Users\\nicki\\.nuget\\packages\\fsharpcompiler.parsing\\1.0.4\\fsharpcompiler.parsing.1.0.4.nupkg.sha512",
     "C:\\Users\\nicki\\.nuget\\packages\\gee.external.capstone\\2.3.0\\gee.external.capstone.2.3.0.nupkg.sha512",
     "C:\\Users\\nicki\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\nicki\\.nuget\\packages\\iced\\1.17.0\\iced.1.17.0.nupkg.sha512",

@@ -12,6 +12,7 @@
     <PackageReference Include="BenchmarkDotNet.Annotations" Version="0.14.0" />
     <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.14.0" />
     <PackageReference Include="DotNetCore.Collections.Paginable.SqlKata" Version="5.0.0" />
+    <PackageReference Include="FSharp.JLinq" Version="1.0.0" />
     <PackageReference Include="SqlKata" Version="2.4.0" />
   </ItemGroup>
 

@@ -386,8 +386,8 @@ public class ApiQueryLanguage : AbstractLanguage
                 { @operator, data?.DeepClone() }
             };
             var interpreter = LanguageFactory.Build(newExpression, _builder);
-            _builder.AndWhere(interpreter.Execute());
-
+            // _builder.AndWhere(interpreter.Execute());
+            interpreter.Execute();
             expression.Remove(@operator);
             _expression.Remove(@operator);
 
@@ -403,7 +403,8 @@ public class ApiQueryLanguage : AbstractLanguage
                 { "eq", _expression }
             };
             var interpreter = LanguageFactory.Build(newExpression, _builder);
-            _builder.AndWhere(interpreter.Execute());
+            // _builder.AndWhere(interpreter.Execute());
+            interpreter.Execute();
         }
         else
         {
