@@ -122,9 +122,12 @@
     
     query = new JsonObject
     {
-     ["neq"] = new JsonObject
+     ["where"] = new JsonObject
      {
-      ["name"] = JsonValue.Create("Ivan")
+      ["neq"] = new JsonObject
+      {
+       ["name"] = JsonValue.Create("Ivan")
+      }
      }
     };
     api = new ApiQueryLanguage(query, qb);
