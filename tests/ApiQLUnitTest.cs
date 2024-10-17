@@ -189,6 +189,28 @@
     Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" = @p0", sql);
     Assert.Single(parameters);
     Assert.Equal("Ivan", parameters["@p0"].ToString());
+    
+    //Неавенство с eq и rel
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["name"] = JsonValue.Create("Ivan"),
+     ["rel"] = JsonValue.Create("neq")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (NOT (\"name\" = @p0) OR \"name\" IS NULL)", sql);
+    Assert.Single(parameters);
+    Assert.Equal("Ivan", parameters["@p0"].ToString());
   }
 
   [Fact]
