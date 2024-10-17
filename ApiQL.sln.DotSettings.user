@@ -1,0 +1,105 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Users\nicki\.nuget\packages\sqlkata.execution\2.3.7\lib\netstandard2.0\SqlKata.Execution.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=23a5e299_002Dc30f_002D44ff_002Da429_002Df983ba4d8ef8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest.TestSimpleEquals&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2c618940_002D966d_002D40f7_002D89e0_002Dfe343a8a6d11/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=304382d2_002Dfc24_002D4c2a_002Db428_002D45bf0e014bf5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=44263fd7_002D5340_002D4e96_002Daffe_002D390986ff7e89/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ApiQlUnitTestSeparate #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=45591ac8_002D8d10_002D4171_002Db16c_002D9e0032e562ec/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #12" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest.TestSimpleEquals&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.TestEqualityWithNestedQuery&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=61502ebd_002De42c_002D4e1f_002D9bd9_002D470961a1ce53/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest.TestSimpleEquals&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6a240ce2_002D3cd5_002D439c_002D845b_002Da82dcb553209/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #11" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest.TestSimpleEquals&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6f1ef3a0_002D40c3_002D4114_002D9008_002D63aadf2a3776/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ApiQlUnitTestSeparate" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a4376131_002Da8ef_002D4634_002Da1ec_002D29169639a058/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ApiQlUnitTest #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a550f709_002D28e3_002D4bc8_002D9277_002D9f42d1db39b8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #13" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a7c69637_002D9a8a_002D4cad_002D8a4f_002D357a8d01f641/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest.TestSimpleEquals&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b4a2a6d6_002Ddc62_002D410e_002Da02e_002Db93838cca6f1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ApiQlUnitTestSeparate #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c07e63bf_002D550d_002D4775_002D9fb5_002Daf028021334c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #8" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest.TestSimpleEquals&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c210d67f_002D0cbf_002D4b67_002Db922_002Dbad072941745/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #7" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest.TestSimpleEquals&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cbe3c33d_002D0624_002D417d_002D9b46_002Dcd27f722c8cd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #6" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d4093bdf_002Db879_002D4d8b_002Db8c4_002De01f8c45d747/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ApiQlUnitTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=da217b11_002D1e00_002D4f9e_002D8aeb_002D3fb5f8d85d84/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #9" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest.TestSimpleEquals&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=da85828e_002D93dd_002D496e_002Db0b0_002Da17094978c81/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestSimpleEquals #10" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest.TestSimpleEquals&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dbe8aeec_002D3123_002D4f0a_002D8626_002D3d3ff5cd74a3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ApiQlUnitTestSeparate #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e08cb81a_002D2527_002D44a4_002D9b70_002Dab31adb8fcbe/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ApiQlUnitTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
