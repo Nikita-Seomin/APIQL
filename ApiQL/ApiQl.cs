@@ -361,7 +361,8 @@ public class ApiQueryLanguage : AbstractLanguage
             };
 
             var interpreter = LanguageFactory.Build(newExpression, _builder);
-            _builder.AndWhere(interpreter.Execute());
+            // _builder.AndWhere(interpreter.Execute());
+            interpreter.Execute();
         }
     }
 
