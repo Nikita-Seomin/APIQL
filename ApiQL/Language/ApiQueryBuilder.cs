@@ -159,16 +159,16 @@ public class ApiQueryBuilder
         }
     }
     
-    public Query Neq(string field, object value)
+    public Query Neq(string field, object value, string specFlag = null)
     {
         string fieldName = JsonField.GetJsonFieldName(field, value);
         object fieldValue = JsonField.GetJsonFieldValue(field, value);
-
+        
         // Строим условия с помощью SqlKata
         _builder.Where(q =>
         {
-            q.WhereNot(fieldName, value);
-            q.OrWhereNull(fieldName);
+            q.WhereNot(fieldName, fieldValue);
+           if (specFlag != "spec") q.OrWhereNull(fieldName);
             return q;
         });
         
@@ -182,12 +182,11 @@ public class ApiQueryBuilder
     
     public Query Eq(string field, object value)
     {
-        
         string fieldName = JsonField.GetJsonFieldName(field, value);
         string fieldValue = JsonField.GetJsonFieldValue(field, value);
         object parameterValue = JsonField.GetJsonPropertyValue(value);
         var dictionary = new Dictionary<string, object>();
-        dictionary.Add(fieldName, value);
+        dictionary.Add(fieldName, fieldValue);
         _builder.Where(dictionary);
         return _builder;
 

@@ -2,7 +2,7 @@
 using System.Text.Json.Nodes;
 
 using ApiQL.Language;
-
+using ApiQL.Language.Specs;
 using SqlKata;
 using SqlKata.Execution;
 
@@ -43,7 +43,7 @@ public class ApiQueryLanguage : AbstractLanguage
         // Инициализация спецификаций
         _specs = new Dictionary<string, Type>
         {
-            // { "Equals", typeof(Equals) },
+            { "eq", typeof(Equals) },
             // { "NotEquals", typeof(NotEquals) },
             // { "IsNull", typeof(IsNull) },
             // { "LessThan", typeof(LessThan) },
@@ -301,25 +301,35 @@ public class ApiQueryLanguage : AbstractLanguage
 
     private void ExecuteSpec(JsonObject expression)
     {
-        var specName = expression[SPEC]?.GetValue<string>();
+        var specName =  JsonField.ChangeOperatorName(expression[SPEC]?.GetValue<string>());
         if (specName is null) return;
-
+        
         expression.Remove(SPEC);
-
+        
         var newExpression = new JsonObject
         {
             { SPEC, specName }
         };
-
-        foreach (var property in expression)
+        
+        var query = new JsonObject
         {
-            newExpression.Add(property.Key, property.Value);
-        }
+            [specName] = expression
+        };
+        
+        _expression = query;
 
-        _expression = newExpression;
+        // foreach (var property in expression)
+        // {
+        //     // Если значение является узлом, мы делаем его глубокую копию.
+        //     var valueCopy = property.Value?.DeepClone();
+        //     newExpression.Add(property.Key, valueCopy);
+        // }
+        
+        // _expression = newExpression;
 
-        var interpreter = LanguageFactory.Build(_expression, _builder);
-        _builder.AndWhere(interpreter.Execute());
+        var interpreter = LanguageFactory.Build(_expression, _builder, SPEC);
+        // _builder.AndWhere(interpreter.Execute());
+        interpreter.Execute();
     }
 
     private void ExecuteKeyWhere(JsonObject expression)

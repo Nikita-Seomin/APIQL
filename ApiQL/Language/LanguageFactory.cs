@@ -9,7 +9,7 @@ namespace ApiQL.Language;
 /// </summary>
 internal class LanguageFactory
 {
-    public static ILanguage Build(JsonNode data, ApiQueryBuilder builder, string? @operator = null)
+    public static ILanguage Build(JsonNode data, ApiQueryBuilder builder, string specFlag = null)
     {
         
         if (data == null)
@@ -19,6 +19,7 @@ internal class LanguageFactory
 
         try
         {
+            string? @operator = null;
             // Преобразуйте JsonNode в JsonElement
             JsonElement element = data.Deserialize<JsonElement>();
 
@@ -46,7 +47,7 @@ internal class LanguageFactory
                 // "and" => new AndInterpreter(data_),
                 // "or" => new OrInterpreter(data_),
                 "eq" => new EqualsInterpreter(data_, builder),
-                "neq" => new NotEqualsInterpreter(data_, builder),
+                "neq" => new NotEqualsInterpreter(data_, builder, specFlag),
                 // "lt" => new LessThanInterpreter(data_),
                 // "lte" => new LessThanOrEqualInterpreter(data_),
                 // "gt" => new GreaterThanInterpreter(data_),
@@ -61,7 +62,7 @@ internal class LanguageFactory
                 // "not_equals_any" => new NotEqualsAnyInterpreter(data_),
                 // "equals_all" => new EqualsAllInterpreter(data_),
                 // "not_equals_all" => new NotEqualsAllInterpreter(data_),
-                // "spec" => new SpecInterpreter(data),
+                // "spec" => new SpecInterpreter(data_, builder),
                 // "address" => new AddressInterpreter(data_),
                 // "gar_address" => new GarAddressInterpreter(data_),
                 // "search" or "se" => new SearchInterpreter(data_),

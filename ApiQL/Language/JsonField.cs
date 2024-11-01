@@ -1,4 +1,5 @@
 ﻿using System.Collections.Frozen;
+using System.Text.Json;
 
 namespace ApiQL.Language;
 
@@ -81,22 +82,33 @@ public static class JsonField
     
     public static string? GetJsonFieldValue(string field, object? value = null, bool isArray = false)
     {
-        if (value is Dictionary<string, object> dictionary && dictionary.Count > 0 && dictionary.Keys.First() != null)
+        if (value is JsonElement jsonElement)
         {
-            // Получаем первый ключ словаря
-            string fieldProp = new List<string>(dictionary.Keys)[0];
-            field = $"\"getPropertyById\"({field}, '{fieldProp}')";
-                
-            if (isArray && dictionary[fieldProp] is string propertyValue)
+            if (jsonElement.ValueKind == JsonValueKind.String)
             {
-                // Преобразуем строку в массив
-                dictionary[fieldProp] = propertyValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            }
+                string stringValue = jsonElement.GetString();
 
-            string fieldType = GetJsonFieldType(dictionary[fieldProp]);
-            if (!string.IsNullOrEmpty(fieldType))
+                if (isArray)
+                {
+                    var array = stringValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    // Handle the array if needed
+                }
+
+                return stringValue;
+                // Add any additional processing for string value if needed
+            }
+            else if (jsonElement.ValueKind == JsonValueKind.Object && jsonElement.EnumerateObject().Any())
             {
-                field += $"::{fieldType}";
+                var jsonObject = jsonElement;
+                JsonProperty firstProperty = jsonObject.EnumerateObject().First();
+                string fieldProp = firstProperty.Name;
+                field = $"\"getPropertyById\"({field}, '{fieldProp}')";
+            
+                string fieldType = GetJsonFieldType(firstProperty.Value);
+                if (!string.IsNullOrEmpty(fieldType))
+                {
+                    field += $"::{fieldType}";
+                }
             }
         }
 
@@ -182,6 +194,35 @@ public static class JsonField
         return false; // В других случаях
     }
 
-
-
+    public static string ChangeOperatorName(string oper)
+    {
+        oper = oper.Replace("_","");
+        oper = oper.Replace("-","");
+        return oper.ToLower() switch
+        {
+            // "and" => new AndInterpreter(data_),
+            // "or" => new OrInterpreter(data_),
+            "equals" => "eq",
+            "notequals" => "neq",
+            // "lt" => new LessThanInterpreter(data_),
+            // "lte" => new LessThanOrEqualInterpreter(data_),
+            // "gt" => new GreaterThanInterpreter(data_),
+            // "gte" => new GreaterThanOrEqualInterpreter(data_),
+            // "is_null" => new IsNullInterpreter(data_),
+            // "is_not_null" => new IsNotNullInterpreter(data_),
+            // "like" => new LikeInterpreter(data_),
+            // "not_like" => new NotLikeInterpreter(data_),
+            // "in" => new InInterpreter(data_),
+            // "not_in" => new NotInInterpreter(data_),
+            // "equals_any" => new EqualsAnyInterpreter(data_),
+            // "not_equals_any" => new NotEqualsAnyInterpreter(data_),
+            // "equals_all" => new EqualsAllInterpreter(data_),
+            // "not_equals_all" => new NotEqualsAllInterpreter(data_),
+            // "spec" => new SpecInterpreter(data),
+            // "address" => new AddressInterpreter(data_),
+            // "gar_address" => new GarAddressInterpreter(data_),
+            // "search" or "se" => new SearchInterpreter(data_),
+            _ => throw new ArgumentException($"Operator \"{oper}\" not found")
+        };
+    }
 }

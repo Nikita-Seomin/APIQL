@@ -214,7 +214,7 @@
   }
 
   [Fact]
-  public void TestTest()
+  public void testEqualsSpecs()
   {
    // Простое равенство
    var qb = _db.Query("users as u")
@@ -222,9 +222,182 @@
 
    var query = new JsonObject
    {
-    ["neq"] = new JsonObject
+    { "name", "Ivan" },
+    { "spec", "Equals" }
+   };
+   var api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   var compiler = new PostgresCompiler();
+   SqlResult result = compiler.Compile(qb);
+   string sql = result.Sql;
+   var parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" = @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal("Ivan", parameters["@p0"].ToString());
+   
+   
+   // Простое равенство наоборот
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    { "spec", "Equals" },
+    { "name", "Ivan" }
+    
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" = @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal("Ivan", parameters["@p0"].ToString());
+   
+   
+   
+   // Простое равенство lower
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    { "name", "Ivan" },
+    { "spec", "equals" }
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" = @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal("Ivan", parameters["@p0"].ToString());
+   
+   
+   
+   // Простое равенство наоборот lower
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    { "spec", "equals" },
+    { "name", "Ivan" }
+    
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" = @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal("Ivan", parameters["@p0"].ToString());
+   
+   
+   // Простое неравенство
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    { "name", "Ivan" },
+    { "spec", "NotEquals" }
+    
+    
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (NOT (\"name\" = @p0))", sql);
+   Assert.Single(parameters);
+   Assert.Equal("Ivan", parameters["@p0"].ToString());
+   
+   
+   // Простое неравенство наоборот
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    { "spec", "NotEquals" },
+    { "name", "Ivan" }
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (NOT (\"name\" = @p0))", sql);
+   Assert.Single(parameters);
+   Assert.Equal("Ivan", parameters["@p0"].ToString());
+   
+   
+   // Простое неравенство наоборот c _
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    
+    { "spec", "not_equals" },
+    { "name", "Ivan" }
+    
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (NOT (\"name\" = @p0))", sql);
+   Assert.Single(parameters);
+   Assert.Equal("Ivan", parameters["@p0"].ToString());
+   
+  }
+
+
+  public void testGreaterLess()
+  {
+   // Простое равенство
+   var qb = _db.Query("users as u")
+    .Select("u.id");
+
+   var query = new JsonObject
+   {
+    ["gt"] = new JsonObject
     {
-     ["name"] = JsonValue.Create("Ivan")
+     ["age"] = JsonValue.Create(20)
     }
    };
    var api = new ApiQueryLanguage(query, qb);
@@ -236,9 +409,8 @@
    string sql = result.Sql;
    var parameters = result.NamedBindings;
 
-   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (NOT (\"name\" = @p0) OR \"name\" IS NULL)", sql);
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" > @p0", sql);
    Assert.Single(parameters);
-   Assert.Equal("Ivan", parameters["@p0"].ToString());
+   Assert.Equal(20, parameters["@p0"]);
   }
-
  }
