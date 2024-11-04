@@ -579,4 +579,287 @@
    Assert.Single(parameters);
    Assert.Equal((long)20, parameters["@p0"]);
   }
+
+ //Тест < > spec
+  [Fact]
+  public void testGreaterLessSpecs()
+  {
+   // spec >
+   var qb = _db.Query("users as u")
+    .Select("u.id");
+
+   var query = new JsonObject
+   {
+     ["age"] = JsonValue.Create(20),
+     ["spec"] = JsonValue.Create("GreaterThan")
+   };
+   var api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   var compiler = new PostgresCompiler();
+   SqlResult result = compiler.Compile(qb);
+   string sql = result.Sql;
+   var parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" > @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+  
+   
+   // spec > lower_case
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["age"] = JsonValue.Create(20),
+    ["spec"] = JsonValue.Create("greater_than")
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" > @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec > lower_case reverse
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["spec"] = JsonValue.Create("greater_than"),
+    ["age"] = JsonValue.Create(20)
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" > @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec >=
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["age"] = JsonValue.Create(20),
+    ["spec"] = JsonValue.Create("GreaterThanOrEqual")
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" >= @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec >= lower_case
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["age"] = JsonValue.Create(20),
+    ["spec"] = JsonValue.Create("greater_than_or_equal")
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" >= @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec >= lower_case reverse
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["spec"] = JsonValue.Create("greater_than_or_equal"),
+    ["age"] = JsonValue.Create(20)
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" >= @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec <
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["age"] = JsonValue.Create(20),
+    ["spec"] = JsonValue.Create("LessThan"),
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" < @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec < lower_case
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["age"] = JsonValue.Create(20),
+    ["spec"] = JsonValue.Create("less_than")
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" < @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec < lower_case reverse
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["spec"] = JsonValue.Create("less_than"),
+    ["age"] = JsonValue.Create(20)
+    
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" < @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec <=
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["age"] = JsonValue.Create(20),
+    ["spec"] = JsonValue.Create("LessThanOrEqual")
+    
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" <= @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec <= lower_case
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["age"] = JsonValue.Create(20),
+    ["spec"] = JsonValue.Create("less_than_or_equal")
+    
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" <= @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // spec <= lower_case reverse
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["spec"] = JsonValue.Create("less_than_or_equal"),
+    ["age"] = JsonValue.Create(20)
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" <= @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
+  }
  }
