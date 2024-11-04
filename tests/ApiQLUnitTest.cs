@@ -482,5 +482,30 @@
    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" >= @p0", sql);
    Assert.Single(parameters);
    Assert.Equal((long)20, parameters["@p0"]);
+   
+   
+   // Простое <
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["lt"] = new JsonObject
+    {
+     ["age"] = JsonValue.Create(20)
+    }
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"age\" < @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal((long)20, parameters["@p0"]);
   }
  }

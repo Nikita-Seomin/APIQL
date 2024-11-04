@@ -206,5 +206,15 @@ public class ApiQueryBuilder
         _builder.Where(fieldName, ">=", fieldValue);
         return _builder;
     }
+    
+    public Query lt(string field, object value)
+    {
+        string fieldName = JsonField.GetJsonFieldName(field, value);
+        object fieldValue = JsonField.GetJsonFieldValue(field, value);
+        
+        // Строим условия с помощью SqlKata
+        _builder.Where(fieldName, "<", fieldValue);
+        return _builder;
+    }
 
 }

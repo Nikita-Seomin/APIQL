@@ -48,7 +48,7 @@ internal class LanguageFactory
                 // "or" => new OrInterpreter(data_),
                 "eq" => new EqualsInterpreter(data_, builder),
                 "neq" => new NotEqualsInterpreter(data_, builder, specFlag),
-                // "lt" => new LessThanInterpreter(data_),
+                "lt" => new LessThanInterpreter(data_, builder),
                 // "lte" => new LessThanOrEqualInterpreter(data_),
                 "gt" => new GreaterThanInterpreter(data_, builder),
                 "gte" => new GreaterThanOrEqualInterpreter(data_, builder),
