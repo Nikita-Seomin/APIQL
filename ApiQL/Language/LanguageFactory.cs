@@ -50,7 +50,7 @@ internal class LanguageFactory
                 "neq" => new NotEqualsInterpreter(data_, builder, specFlag),
                 // "lt" => new LessThanInterpreter(data_),
                 // "lte" => new LessThanOrEqualInterpreter(data_),
-                // "gt" => new GreaterThanInterpreter(data_),
+                "gt" => new GreaterThanInterpreter(data_, builder),
                 // "gte" => new GreaterThanOrEqualInterpreter(data_),
                 // "is_null" => new IsNullInterpreter(data_),
                 // "is_not_null" => new IsNotNullInterpreter(data_),

@@ -19,14 +19,14 @@ internal class NotEqualsInterpreter : AbstractLanguage
             var enumerator = _expression.EnumerateObject().GetEnumerator();
             enumerator.MoveNext();
             var property = enumerator.Current;
-            string jsonString = $"{{\"{property.Name}\":\"{property.Value}\"}}";
-            var dictionary = new Dictionary<string, object>();
-            dictionary.Add(property.Name, property.Value);
+            // string jsonString = $"{{\"{property.Name}\":\"{property.Value}\"}}";
+            // var dictionary = new Dictionary<string, object>();
+            // dictionary.Add(property.Name, property.Value);
             // Здесь создаем объект с анонимными типами для использования в `Where`
-            var parameters = new Dictionary<string, object>()
-            {
-                { property.Name, property.Value },
-            };
+            // var parameters = new Dictionary<string, object>()
+            // {
+            //     { property.Name, property.Value },
+            // };
 
             return _builder.Neq(property.Name, property.Value, specFlag);
 

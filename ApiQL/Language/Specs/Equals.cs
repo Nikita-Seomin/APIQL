@@ -20,12 +20,12 @@ public class Equals : AbstractSpec
     public string Match(QueryFactory queryFactory)
     {
         string? fieldName = JsonField.GetJsonFieldName(parameter, value);
-        string? fieldValue = JsonField.GetJsonFieldValue(parameter, value);
+        object? fieldValue = JsonField.GetJsonFieldValue(parameter, value);
         object jsonValue = JsonField.GetJsonPropertyValue(value);
 
         // SqlKata позволяет использовать параметризацию в запросе
         var query = new Query("your_table_name")
-            .Where(fieldValue, jsonValue);
+            .Where(fieldName, fieldValue);
         
         // Если вам нужно выполнить данный запрос в базе данных, используйте:
         // var result = await queryFactory.Query(query).GetAsync();

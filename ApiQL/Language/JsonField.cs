@@ -80,7 +80,7 @@ public static class JsonField
         return Transliterate(field);
     }
     
-    public static string? GetJsonFieldValue(string field, object? value = null, bool isArray = false)
+    public static object? GetJsonFieldValue(string field, object? value = null, bool isArray = false)
     {
         if (value is JsonElement jsonElement)
         {
@@ -95,6 +95,19 @@ public static class JsonField
                 }
 
                 return stringValue;
+                // Add any additional processing for string value if needed
+            }
+            else if (jsonElement.ValueKind == JsonValueKind.Number)
+            {
+                long numberValue = jsonElement.GetInt32();
+
+                // if (isArray)
+                // {
+                //     var array = stringValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                //     // Handle the array if needed
+                // }
+
+                return numberValue;
                 // Add any additional processing for string value if needed
             }
             else if (jsonElement.ValueKind == JsonValueKind.Object && jsonElement.EnumerateObject().Any())
