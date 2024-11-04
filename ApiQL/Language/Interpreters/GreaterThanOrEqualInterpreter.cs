@@ -4,12 +4,22 @@ namespace ApiQL.Language.Interpreters;
 
 internal class GreaterThanOrEqualInterpreter : AbstractLanguage
 {
-    public GreaterThanOrEqualInterpreter(JsonElement expression) : base(expression)
+    public GreaterThanOrEqualInterpreter(JsonElement expression, ApiQueryBuilder builder) : base(expression)
     {
+        _builder = builder;
     }
 
     public override object? Execute()
     {
-        throw new NotImplementedException();
+        if (_expression.ValueKind == JsonValueKind.Object && _expression.EnumerateObject().Any())
+        {
+            var enumerator = _expression.EnumerateObject().GetEnumerator();
+            enumerator.MoveNext();
+            var property = enumerator.Current;
+            return _builder.gte(property.Name, property.Value);
+
+        }
+        
+        throw new InvalidOperationException("Expression is not a valid JSON object or is empty.");
     }
 }

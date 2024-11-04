@@ -390,7 +390,7 @@
   [Fact]
   public void testGreaterLess()
   {
-   // Простое равенство
+   // Простое >
    var qb = _db.Query("users as u")
     .Select("u.id");
 
@@ -414,7 +414,7 @@
    Assert.Single(parameters);
    Assert.Equal((long)20, parameters["@p0"]);
    
-   
+   // Простое >=
    qb = _db.Query("users as u")
     .Select("u.id");
 
