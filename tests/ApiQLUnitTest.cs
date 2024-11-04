@@ -862,4 +862,30 @@
    Assert.Single(parameters);
    Assert.Equal((long)20, parameters["@p0"]);
   }
+  
+  
+  //Тест null
+  [Fact]
+  public void testNull()
+  {
+   // Простое равенство
+   var qb = _db.Query("users as u")
+    .Select("u.id");
+
+   var query = new JsonObject
+   {
+    { "is_null", "surname" }
+   };
+   var api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   var compiler = new PostgresCompiler();
+   SqlResult result = compiler.Compile(qb);
+   string sql = result.Sql;
+   var parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NULL", sql);
+   Assert.Empty(parameters);
+  }
  }

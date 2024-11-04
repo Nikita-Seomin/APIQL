@@ -221,7 +221,7 @@ public static class JsonField
             "lessthanorequal" => "lte",
             "greaterthan" => "gt",
             "greaterthanorequal" => "gte",
-            // "is_null" => new IsNullInterpreter(data_),
+            "isnull" => "is_null",
             // "is_not_null" => new IsNotNullInterpreter(data_),
             // "like" => new LikeInterpreter(data_),
             // "not_like" => new NotLikeInterpreter(data_),
@@ -235,7 +235,7 @@ public static class JsonField
             // "address" => new AddressInterpreter(data_),
             // "gar_address" => new GarAddressInterpreter(data_),
             // "search" or "se" => new SearchInterpreter(data_),
-            _ => throw new ArgumentException($"Operator \"{oper}\" not found")
+            _ => oper.ToLower() //throw new ArgumentException($"Operator \"{oper}\" not found")
         };
     }
 }

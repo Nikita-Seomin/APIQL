@@ -52,7 +52,7 @@ internal class LanguageFactory
                 "lte" => new LessThanOrEqualInterpreter(data_, builder),
                 "gt" => new GreaterThanInterpreter(data_, builder),
                 "gte" => new GreaterThanOrEqualInterpreter(data_, builder),
-                // "is_null" => new IsNullInterpreter(data_),
+                "is_null" => new IsNullInterpreter(data_, builder),
                 // "is_not_null" => new IsNotNullInterpreter(data_),
                 // "like" => new LikeInterpreter(data_),
                 // "not_like" => new NotLikeInterpreter(data_),

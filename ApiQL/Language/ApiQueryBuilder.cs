@@ -226,5 +226,15 @@ public class ApiQueryBuilder
         _builder.Where(fieldName, "<=", fieldValue);
         return _builder;
     }
+    
+    
+    public Query isNull(string field)
+    {
+        // string fieldName = JsonField.GetJsonFieldName(field, value);
+        
+        // Строим условия с помощью SqlKata
+        _builder.WhereNull(field);
+        return _builder;
+    }
 
 }
