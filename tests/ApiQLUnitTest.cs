@@ -874,7 +874,7 @@
 
    var query = new JsonObject
    {
-    { "is_null", "surname" }
+    ["is_null"] = JsonValue.Create("surname")
    };
    var api = new ApiQueryLanguage(query, qb);
    api.Execute();
@@ -895,7 +895,7 @@
 
    query = new JsonObject
    {
-    { "is_not_null", "surname" }
+    ["is_not_null"] = JsonValue.Create("surname")
    };
    api = new ApiQueryLanguage(query, qb);
    api.Execute();
@@ -908,5 +908,56 @@
 
    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NOT NULL", sql);
    Assert.Empty(parameters);
+  }
+  
+  
+  //Тест null and Equals
+  [Fact]
+  public void testNullAndEquals()
+  {
+   // Простое is_null and Equals
+   var qb = _db.Query("users as u")
+    .Select("u.id");
+
+   var query = new JsonObject
+   {
+    ["is_null"] = JsonValue.Create("surname"),
+    ["name"] = JsonValue.Create("Ivan")
+   };
+   var api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   var compiler = new PostgresCompiler();
+   SqlResult result = compiler.Compile(qb);
+   string sql = result.Sql;
+   var parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NULL AND \"name\" = @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal("Ivan", parameters["@p0"].ToString());
+   
+   
+   // Простое is_not_null and Equals
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    ["is_not_null"] = JsonValue.Create("surname"),
+    ["name"] = JsonValue.Create("Ivan")
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NOT NULL AND \"name\" = @p0", sql);
+   Assert.Single(parameters);
+   Assert.Equal("Ivan", parameters["@p0"].ToString());
   }
  }

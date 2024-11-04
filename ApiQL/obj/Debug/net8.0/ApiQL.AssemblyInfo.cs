@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiQL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ad30bcadb53c60b7f3e4bc3d38253b855ca04ca")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04581eb49030861822d18e3bc9f7face2bdef01f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiQL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiQL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
