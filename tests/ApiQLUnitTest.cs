@@ -960,4 +960,177 @@
    Assert.Single(parameters);
    Assert.Equal("Ivan", parameters["@p0"].ToString());
   }
+  
+  
+  //Тест Equals and null
+   [Fact]
+   public void testEqualsAndNull()
+   {
+    // Простое Equals and is_null 
+    var qb = _db.Query("users as u")
+     .Select("u.id");
+  
+    var query = new JsonObject
+    {
+     ["name"] = JsonValue.Create("Ivan"),
+     ["is_null"] = JsonValue.Create("surname")
+    };
+    var api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+  
+    // Генерация строки SQL из запроса
+    var compiler = new PostgresCompiler();
+    SqlResult result = compiler.Compile(qb);
+    string sql = result.Sql;
+    var parameters = result.NamedBindings;
+  
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" = @p0 AND \"surname\" IS NULL", sql);
+    Assert.Single(parameters);
+    Assert.Equal("Ivan", parameters["@p0"].ToString());
+    
+    
+    // Простое Equals and is_not_null 
+    qb = _db.Query("users as u")
+     .Select("u.id");
+  
+    query = new JsonObject
+    {
+     ["name"] = JsonValue.Create("Ivan"),
+     ["is_not_null"] = JsonValue.Create("surname")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+  
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+  
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" = @p0 AND \"surname\" IS NOT NULL", sql);
+    Assert.Single(parameters);
+    Assert.Equal("Ivan", parameters["@p0"].ToString());
+   }
+   
+   
+   //Тест spec null
+   [Fact]
+   public void testNullSpec()
+   {
+    // Простое spec null
+    var qb = _db.Query("users as u")
+     .Select("u.id");
+
+    var query = new JsonObject
+    {
+     ["spec"] = JsonValue.Create("IsNull"),
+     ["field"] = JsonValue.Create("surname")
+    };
+    var api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    var compiler = new PostgresCompiler();
+    SqlResult result = compiler.Compile(qb);
+    string sql = result.Sql;
+    var parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NULL", sql);
+    Assert.Empty(parameters);
+    
+    
+    // Простое spec null lower_case reverse
+     qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["field"] = JsonValue.Create("surname"),
+     ["spec"] = JsonValue.Create("is_null")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NULL", sql);
+    Assert.Empty(parameters);
+    
+    
+    // spec IsNotNull
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["spec"] = JsonValue.Create("IsNotNull"),
+     ["field"] = JsonValue.Create("surname")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NOT NULL", sql);
+    Assert.Empty(parameters);
+    
+    
+    // spec is_not_null lower_case reverse
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["field"] = JsonValue.Create("surname"),
+     ["spec"] = JsonValue.Create("is_not_null")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NOT NULL", sql);
+    Assert.Empty(parameters);
+   }
+   
+   
+   //Тест like
+   [Fact]
+   public void testLike()
+   {
+    // Простое spec null
+    var qb = _db.Query("users as u")
+     .Select("u.id");
+
+    var query = new JsonObject
+    {
+     ["like"] = new JsonObject
+      {
+       ["name"] = JsonValue.Create("John")
+      }
+    };
+    var api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    var compiler = new PostgresCompiler();
+    SqlResult result = compiler.Compile(qb);
+    string sql = result.Sql;
+    var parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" ilike @p0 ESCAPE \'*\'", sql);
+    Assert.Single(parameters);
+   }
  }

@@ -310,10 +310,10 @@ public class ApiQueryLanguage : AbstractLanguage
         {
             { SPEC, specName }
         };
-        
+        // var s = expression.First().Value.DeepClone();
         var query = new JsonObject
         {
-            [specName] = expression
+            [specName] = expression //.First().Value.DeepClone() is not null ?  expression.First().Value.DeepClone() is not null : expression
         };
         
         _expression = query;
@@ -431,25 +431,29 @@ public class ApiQueryLanguage : AbstractLanguage
                 {
                     var relExpression = new JsonObject
                     {
-                        { property.Key, property.Value }
+                        { property.Key, property.Value.DeepClone() }
                     };
                     var interpreter = LanguageFactory.Build(relExpression, _builder);
-                    _builder.AndWhere(interpreter.Execute());
+                    // _builder.AndWhere(interpreter.Execute());
+                    interpreter.Execute();
                 }
                 else
                 {
                     var relObject = new JsonObject();
                     var keyValueObject = new JsonObject
                     {
-                        { property.Key, property.Value }
+                        { property.Key, property.Value.DeepClone() }
                     };
                     relObject.Add(REL, keyValueObject);
-                    logicArray.Add(relObject);
+                    var interpreter = LanguageFactory.Build(relObject, _builder);
+                    // _builder.AndWhere(interpreter.Execute());
+                    interpreter.Execute();
+                    // logicArray.Add(relObject);
                 }
             }
 
-            var interpreters = logicArray.Where(x => x is not null).Select(item => LanguageFactory.Build(item!, _builder)).ToArray();
-            _builder.AndWhere(Method(Logic, interpreters));
+            // var interpreters = logicArray.Where(x => x is not null).Select(item => LanguageFactory.Build(item!, _builder)).ToArray();
+            // _builder.AndWhere(Method(Logic, interpreters));
         }
     }
 }

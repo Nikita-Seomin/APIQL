@@ -246,5 +246,16 @@ public class ApiQueryBuilder
         _builder.WhereNotNull(field);
         return _builder;
     }
+    
+    
+    public Query like(string field, object value)
+    {
+        string fieldName = JsonField.GetJsonFieldName(field, value);
+        object fieldValue = JsonField.GetJsonFieldValue(field, value);
+        
+        // Строим условия с помощью SqlKata
+        _builder.WhereLike(fieldName, fieldValue, false,"*");
+        return _builder;
+    }
 
 }

@@ -16,7 +16,8 @@ internal class IsNotNullInterpreter : AbstractLanguage
             var enumerator = _expression.EnumerateObject().GetEnumerator();
             enumerator.MoveNext();
             var property = enumerator.Current;
-            return _builder.isNotNull(property.Name);
+            var value = JsonField.GetJsonFieldValue(property.Name, property.Value);
+            return _builder.isNotNull(value.ToString());
 
         }
         else if (_expression.ValueKind == JsonValueKind.String)
