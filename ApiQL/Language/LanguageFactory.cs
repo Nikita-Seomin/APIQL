@@ -53,7 +53,7 @@ internal class LanguageFactory
                 "gt" => new GreaterThanInterpreter(data_, builder),
                 "gte" => new GreaterThanOrEqualInterpreter(data_, builder),
                 "is_null" => new IsNullInterpreter(data_, builder),
-                // "is_not_null" => new IsNotNullInterpreter(data_),
+                "is_not_null" => new IsNotNullInterpreter(data_, builder),
                 // "like" => new LikeInterpreter(data_),
                 // "not_like" => new NotLikeInterpreter(data_),
                 // "in" => new InInterpreter(data_),

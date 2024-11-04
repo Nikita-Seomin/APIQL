@@ -868,7 +868,7 @@
   [Fact]
   public void testNull()
   {
-   // Простое равенство
+   // Простое is_null
    var qb = _db.Query("users as u")
     .Select("u.id");
 
@@ -886,6 +886,27 @@
    var parameters = result.NamedBindings;
 
    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NULL", sql);
+   Assert.Empty(parameters);
+   
+   
+   // Простое is_not_null
+   qb = _db.Query("users as u")
+    .Select("u.id");
+
+   query = new JsonObject
+   {
+    { "is_not_null", "surname" }
+   };
+   api = new ApiQueryLanguage(query, qb);
+   api.Execute();
+
+   // Генерация строки SQL из запроса
+   compiler = new PostgresCompiler();
+   result = compiler.Compile(qb);
+   sql = result.Sql;
+   parameters = result.NamedBindings;
+
+   Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"surname\" IS NOT NULL", sql);
    Assert.Empty(parameters);
   }
  }

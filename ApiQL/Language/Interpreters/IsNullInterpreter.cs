@@ -21,8 +21,7 @@ internal class IsNullInterpreter : AbstractLanguage
         }
         else if (_expression.ValueKind == JsonValueKind.String)
         {
-            string s = _expression.GetString();
-            return _builder.isNull(s);
+            return _builder.isNull(_expression.GetString());
 
         }
         

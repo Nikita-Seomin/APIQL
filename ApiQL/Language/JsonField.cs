@@ -222,7 +222,7 @@ public static class JsonField
             "greaterthan" => "gt",
             "greaterthanorequal" => "gte",
             "isnull" => "is_null",
-            // "is_not_null" => new IsNotNullInterpreter(data_),
+            "isnotnull" => "is_not_null",
             // "like" => new LikeInterpreter(data_),
             // "not_like" => new NotLikeInterpreter(data_),
             // "in" => new InInterpreter(data_),
