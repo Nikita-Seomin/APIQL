@@ -1132,5 +1132,45 @@
 
     Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" ilike @p0 ESCAPE \'*\'", sql);
     Assert.Single(parameters);
+    
+    
+    // Простое spec null
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["or"] = new JsonArray
+     {
+      new JsonObject
+      {
+       ["like"] = new JsonObject
+       {
+        ["name"] = JsonValue.Create("John")
+       }
+      },
+      new JsonObject
+      {
+       ["like"] = new JsonObject
+       {
+        ["name"] = JsonValue.Create("Smith")
+       }
+      }
+     }
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" ilike @p0 ESCAPE \'*\' OR \"name1\" ilike @p1 ESCAPE \'*\'", sql);
+    Assert.Equal(2, parameters.Count);
+    Assert.Equal("John", parameters["@p0"].ToString());
+    Assert.Equal("Smith", parameters["@p1"].ToString());
+    
    }
  }

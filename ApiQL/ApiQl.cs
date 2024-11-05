@@ -386,8 +386,12 @@ public class ApiQueryLanguage : AbstractLanguage
         {
             if (data is not null)
             {
-                var interpreters = data.AsArray().Where(x => x is not null).Select(item => LanguageFactory.Build(item!, _builder)).ToArray();
-                _builder.AndWhere(Method(@operator, interpreters));
+                foreach (var item in data.AsArray())
+                {
+                    LanguageFactory.Build(item!, _builder, null, @operator).Execute();
+                }
+                // var interpreters = data.AsArray().Where(x => x is not null).Select(item => LanguageFactory.Build(item!, _builder).Execute()).ToArray();
+                // _builder.AndWhere(Method(@operator, interpreters));
             }
         }
         else if (IsRelationOperator(@operator) || IsSpecification(@operator))

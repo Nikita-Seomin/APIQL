@@ -59,6 +59,25 @@ public abstract class AbstractLanguage : ILanguage
     {
         _expression = expression;
     }
+    
+    /// <summary>
+    /// Construct abstract interpreter
+    /// </summary>
+    /// <param name="operator">expression to be interpreted</param>
+    public static bool IsAndOperator(string @operator)
+    {
+        return @operator == LOGIC_OPERATORS[0];
+    }
+    
+    
+    /// <summary>
+    /// Construct abstract interpreter
+    /// </summary>
+    /// <param name="operator">expression to be interpreted</param>
+    public static bool IsOrOperator(string @operator)
+    {
+        return @operator == LOGIC_OPERATORS[1];
+    }
 
     /// <summary>
     /// Check if it is unary operator

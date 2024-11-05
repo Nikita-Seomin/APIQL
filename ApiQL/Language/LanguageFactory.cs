@@ -9,7 +9,7 @@ namespace ApiQL.Language;
 /// </summary>
 internal class LanguageFactory
 {
-    public static ILanguage Build(JsonNode data, ApiQueryBuilder builder, string specFlag = null)
+    public static ILanguage Build(JsonNode data, ApiQueryBuilder builder, string specFlag = null, string @logicOperator = "and")
     {
         
         if (data == null)
@@ -54,7 +54,7 @@ internal class LanguageFactory
                 "gte" => new GreaterThanOrEqualInterpreter(data_, builder),
                 "is_null" => new IsNullInterpreter(data_, builder),
                 "is_not_null" => new IsNotNullInterpreter(data_, builder),
-                "like" => new LikeInterpreter(data_, builder),
+                "like" => new LikeInterpreter(data_, builder, @logicOperator),
                 // "not_like" => new NotLikeInterpreter(data_),
                 // "in" => new InInterpreter(data_),
                 // "not_in" => new NotInInterpreter(data_),

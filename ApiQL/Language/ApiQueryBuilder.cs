@@ -248,13 +248,15 @@ public class ApiQueryBuilder
     }
     
     
-    public Query like(string field, object value)
+    public Query like(string field, object value, string logicOperator)
     {
         string fieldName = JsonField.GetJsonFieldName(field, value);
         object fieldValue = JsonField.GetJsonFieldValue(field, value);
-        
         // Строим условия с помощью SqlKata
-        _builder.WhereLike(fieldName, fieldValue, false,"*");
+        if (AbstractLanguage.IsOrOperator(logicOperator))
+            _builder.OrWhereLike(fieldName, fieldValue, false, "*");
+        else
+            _builder.WhereLike(fieldName, fieldValue, false, "*");
         return _builder;
     }
 
