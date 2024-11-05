@@ -38,7 +38,7 @@
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.testEqualsSpecs&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=15b73480_002D934b_002D4b92_002D9389_002Dea5a5f08ac46/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="testNullSpec #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=15b73480_002D934b_002D4b92_002D9389_002Dea5a5f08ac46/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="testNullSpec #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
@@ -114,6 +114,11 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.testEqualsSpecs&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.TestEquality&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=87e09d43_002Db7ec_002D4569_002Dae20_002Da840fb77250c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="testLike #11" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=921f07c7_002Df754_002D4341_002D8366_002D3b12b5fe48c5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestEquality" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;

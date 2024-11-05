@@ -18,7 +18,7 @@ internal class LikeInterpreter : AbstractLanguage
             var enumerator = _expression.EnumerateObject().GetEnumerator();
             enumerator.MoveNext();
             var property = enumerator.Current;
-            return _builder.like(property.Name, property.Value, logicOperator);
+            return _builder.Like(property.Name, property.Value, logicOperator);
         }
         
         throw new InvalidOperationException("Expression is not a valid JSON object or is empty.");

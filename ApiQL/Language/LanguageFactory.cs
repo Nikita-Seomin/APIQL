@@ -55,7 +55,7 @@ internal class LanguageFactory
                 "is_null" => new IsNullInterpreter(data_, builder),
                 "is_not_null" => new IsNotNullInterpreter(data_, builder),
                 "like" => new LikeInterpreter(data_, builder, @logicOperator),
-                // "not_like" => new NotLikeInterpreter(data_),
+                "not_like" => new NotLikeInterpreter(data_, builder),
                 // "in" => new InInterpreter(data_),
                 // "not_in" => new NotInInterpreter(data_),
                 // "equals_any" => new EqualsAnyInterpreter(data_),

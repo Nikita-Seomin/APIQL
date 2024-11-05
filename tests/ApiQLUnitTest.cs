@@ -1106,11 +1106,11 @@
    }
    
    
-   //Тест like
+   // like
    [Fact]
    public void testLike()
    {
-    // Простое spec null
+    // like
     var qb = _db.Query("users as u")
      .Select("u.id");
 
@@ -1132,9 +1132,9 @@
 
     Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" ilike @p0 ESCAPE \'*\'", sql);
     Assert.Single(parameters);
+    Assert.Equal("John", parameters["@p0"].ToString());
     
-    
-    // Простое spec null
+    // or [like, like]
     qb = _db.Query("users as u")
      .Select("u.id");
 
@@ -1172,5 +1172,78 @@
     Assert.Equal("John", parameters["@p0"].ToString());
     Assert.Equal("Smith", parameters["@p1"].ToString());
     
+    
+    
+    // not_like
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["not_like"] = new JsonObject
+     {
+      ["name"] = JsonValue.Create("John")
+     }
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE NOT (\"name\" ilike @p0 ESCAPE \'*\')", sql);
+    Assert.Single(parameters);
+    Assert.Equal("John", parameters["@p0"].ToString());
+    
+    
+    // rel like
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+      ["rel"] = JsonValue.Create("like"),
+      ["name"] = JsonValue.Create("John")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE \"name\" ilike @p0 ESCAPE \'*\'", sql);
+    Assert.Single(parameters);
+    Assert.Equal("John", parameters["@p0"].ToString());
+    
+    
+    // rel not_like
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["rel"] = JsonValue.Create("not_like"),
+     ["name"] = JsonValue.Create("John")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE NOT (\"name\" ilike @p0 ESCAPE \'*\')", sql);
+    Assert.Single(parameters);
    }
+   
+   
+   
  }

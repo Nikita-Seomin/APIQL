@@ -248,7 +248,7 @@ public class ApiQueryBuilder
     }
     
     
-    public Query like(string field, object value, string logicOperator)
+    public Query Like(string field, object value, string logicOperator)
     {
         string fieldName = JsonField.GetJsonFieldName(field, value);
         object fieldValue = JsonField.GetJsonFieldValue(field, value);
@@ -259,6 +259,21 @@ public class ApiQueryBuilder
             // _builder.OrWhereLike(fieldName, fieldValue, false, "*");
         else
             _builder.WhereLike(fieldName, fieldValue, false, "*");
+        return _builder;
+    }
+    
+    
+    public Query NotLike(string field, object value, string logicOperator)
+    {
+        string fieldName = JsonField.GetJsonFieldName(field, value);
+        object fieldValue = JsonField.GetJsonFieldValue(field, value);
+        // Строим условия с помощью SqlKata
+        if (AbstractLanguage.IsOrOperator(logicOperator))
+            _builder.OrWhere(q 
+                => q.WhereNotLike(fieldName, fieldValue, false, "*"));
+        // _builder.OrWhereLike(fieldName, fieldValue, false, "*");
+        else
+            _builder.WhereNotLike(fieldName, fieldValue, false, "*");
         return _builder;
     }
 
