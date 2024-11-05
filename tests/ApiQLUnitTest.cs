@@ -1353,7 +1353,11 @@
     {
      ["in"] = new JsonObject
      {
-      ["name"] = JsonValue.Create("John")
+      ["name"] = new JsonArray
+      {
+       JsonValue.Create("John"),
+       JsonValue.Create("Ivan")
+      }
      }
     };
     var api = new ApiQueryLanguage(query, qb);
@@ -1365,8 +1369,9 @@
     string sql = result.Sql;
     var parameters = result.NamedBindings;
 
-    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"name\"IN @p0)", sql);
-    Assert.Single(parameters);
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"name\" IN (@p0,@p1))", sql);
+    Assert.Equal(2, parameters.Count);
     Assert.Equal("John", parameters["@p0"].ToString());
+    Assert.Equal("Ivan", parameters["@p1"].ToString());
    }
  }

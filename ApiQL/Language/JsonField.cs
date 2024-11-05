@@ -123,6 +123,24 @@ public static class JsonField
                     field += $"::{fieldType}";
                 }
             }
+            else if (jsonElement.ValueKind == JsonValueKind.Array)
+            {
+                List<string> elements = new List<string>();
+
+                foreach (JsonElement element in jsonElement.EnumerateArray())
+                {
+                    // Проверяем тип элементов и добавляем их в список
+                    // Если вам нужно обработать специфические типы, добавьте логику здесь
+                    elements.Add(element.ToString());
+                }
+
+                // Преобразуем список в строку, разделенную запятыми
+                // string result = string.Join(",", elements);
+
+                // Console.WriteLine(result); // Выводит: value1,value2,value3
+                return string.Join(",", elements);
+                // Add any additional processing for string value if needed
+            }
         }
 
         if (value is bool)
