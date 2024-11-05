@@ -254,7 +254,9 @@ public class ApiQueryBuilder
         object fieldValue = JsonField.GetJsonFieldValue(field, value);
         // Строим условия с помощью SqlKata
         if (AbstractLanguage.IsOrOperator(logicOperator))
-            _builder.OrWhereLike(fieldName, fieldValue, false, "*");
+            _builder.OrWhere(q 
+                => q.WhereLike(fieldName, fieldValue, false, "*"));
+            // _builder.OrWhereLike(fieldName, fieldValue, false, "*");
         else
             _builder.WhereLike(fieldName, fieldValue, false, "*");
         return _builder;
