@@ -224,7 +224,7 @@ public static class JsonField
             "isnull" => "is_null",
             "isnotnull" => "is_not_null",
             // "like" => new LikeInterpreter(data_),
-            // "not_like" => new NotLikeInterpreter(data_),
+            "notlike" => "not_like",
             // "in" => new InInterpreter(data_),
             // "not_in" => new NotInInterpreter(data_),
             // "equals_any" => new EqualsAnyInterpreter(data_),

@@ -5,10 +5,12 @@ namespace ApiQL.Language.Interpreters;
 internal class NotLikeInterpreter : AbstractLanguage
 {
     private readonly string _logicOperator;
-    public NotLikeInterpreter(JsonElement expression, ApiQueryBuilder builder, string @logicOperator = "and") : base(expression)
+    private readonly string _specFlag;
+    public NotLikeInterpreter(JsonElement expression, ApiQueryBuilder builder, string @logicOperator = "and", string specFlag = null!) : base(expression)
     {
         _builder = builder;
         _logicOperator = @logicOperator;
+        _specFlag = specFlag;
     }
 
     public override object? Execute()
@@ -18,7 +20,7 @@ internal class NotLikeInterpreter : AbstractLanguage
             var enumerator = _expression.EnumerateObject().GetEnumerator();
             enumerator.MoveNext();
             var property = enumerator.Current;
-            return _builder.NotLike(property.Name, property.Value, _logicOperator);
+            return _builder.NotLike(property.Name, property.Value, _logicOperator,_specFlag);
         }
         
         throw new InvalidOperationException("Expression is not a valid JSON object or is empty.");

@@ -80,6 +80,11 @@
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.testEqualsSpecs&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=581b355c_002Dc0a5_002D4be3_002Db71c_002Da71989feaf0b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="testLike #12" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5dbae1cc_002Dccf5_002D40dd_002D9754_002D6ad5a25a3cf1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="testLike #7" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.testLike&lt;/TestId&gt;&#xD;
@@ -116,7 +121,7 @@
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.TestEquality&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=87e09d43_002Db7ec_002D4569_002Dae20_002Da840fb77250c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="testLike #11" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=87e09d43_002Db7ec_002D4569_002Dae20_002Da840fb77250c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="testLike #11" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
@@ -184,6 +189,11 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.testEqualsSpecs&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.testGreaterLess&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b8e52b9e_002D0593_002D41f4_002Da5c7_002Dd455afde540e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="testLikeSpec" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c188f2d8_002De14a_002D43ac_002D92a6_002D3f7c02b7c0ff/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="testNullSpec #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;

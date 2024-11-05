@@ -4,11 +4,13 @@ namespace ApiQL.Language.Interpreters;
 
 internal class LikeInterpreter : AbstractLanguage
 {
-    private string logicOperator;
-    public LikeInterpreter(JsonElement expression, ApiQueryBuilder builder, string @logicOperator = "and") : base(expression)
+    private readonly string _logicOperator;
+    private readonly string _specFlag;
+    public LikeInterpreter(JsonElement expression, ApiQueryBuilder builder, string @logicOperator = "and", string specFlag = null!) : base(expression)
     {
         _builder = builder;
-        this.logicOperator = @logicOperator;
+        _logicOperator = @logicOperator;
+        _specFlag = specFlag;
     }
 
     public override object? Execute()
@@ -18,7 +20,7 @@ internal class LikeInterpreter : AbstractLanguage
             var enumerator = _expression.EnumerateObject().GetEnumerator();
             enumerator.MoveNext();
             var property = enumerator.Current;
-            return _builder.Like(property.Name, property.Value, logicOperator);
+            return _builder.Like(property.Name, property.Value, _logicOperator, _specFlag);
         }
         
         throw new InvalidOperationException("Expression is not a valid JSON object or is empty.");
