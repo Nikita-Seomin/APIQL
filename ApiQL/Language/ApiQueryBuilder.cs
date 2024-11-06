@@ -291,13 +291,31 @@ public class ApiQueryBuilder
         string fieldName = JsonField.GetJsonFieldName(field, value);
         object fieldValue = JsonField.GetJsonFieldValue(field, value);
         
+        var dataArr = fieldValue?.ToString()!.Split(',');
         // Строим условия с помощью SqlKata
         if (AbstractLanguage.IsOrOperator(logicOperator)) // если в составе оператора or
             _builder.OrWhere(q
-                => q.WhereIn(fieldName,new [] {1, 2, 3, 4, 5}));     
+                => q.WhereIn(fieldName,dataArr));     
         else
             _builder.Where(q
-                => q.WhereIn(fieldName, new [] {fieldValue?.ToString()!.Split(',')}));   
+                => q.WhereIn(fieldName, dataArr));   
+        return _builder;
+    }
+    
+    
+    public Query NotIn(string field, object value, string logicOperator)
+    {
+        string fieldName = JsonField.GetJsonFieldName(field, value);
+        object fieldValue = JsonField.GetJsonFieldValue(field, value);
+        
+        var dataArr = fieldValue?.ToString()!.Split(',');
+        // Строим условия с помощью SqlKata
+        if (AbstractLanguage.IsOrOperator(logicOperator)) // если в составе оператора or
+            _builder.OrWhere(q
+                => q.WhereNotIn(fieldName,dataArr));     
+        else
+            _builder.Where(q
+                => q.WhereNotIn(fieldName, dataArr));   
         return _builder;
     }
 
