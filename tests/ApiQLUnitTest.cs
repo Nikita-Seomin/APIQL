@@ -1462,5 +1462,122 @@
    }
    
    
+   // in
+   [Fact]
+   public void TestInSpec()
+   {
+    //in
+    var qb = _db.Query("users as u")
+     .Select("u.id");
+
+    var query = new JsonObject
+    {
+     ["name"] = new JsonArray
+     {
+      JsonValue.Create("John"),
+      JsonValue.Create("Ivan")
+     },
+     ["spec"] = JsonValue.Create("In")
+    };
+    var api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    var compiler = new PostgresCompiler();
+    SqlResult result = compiler.Compile(qb);
+    string sql = result.Sql;
+    var parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"name\" IN (@p0, @p1))", sql);
+    Assert.Equal(2, parameters.Count);
+    Assert.Equal("John", parameters["@p0"].ToString());
+    Assert.Equal("Ivan", parameters["@p1"].ToString());
+    
+    
+    //in reverse
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["spec"] = JsonValue.Create("In"),
+     ["name"] = new JsonArray
+     {
+      JsonValue.Create("John"),
+      JsonValue.Create("Ivan")
+     }
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"name\" IN (@p0, @p1))", sql);
+    Assert.Equal(2, parameters.Count);
+    Assert.Equal("John", parameters["@p0"].ToString());
+    Assert.Equal("Ivan", parameters["@p1"].ToString());
+    
+    
+    // not_in
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["name"] = new JsonArray
+     {
+      JsonValue.Create("John"),
+      JsonValue.Create("Ivan")
+     },
+     ["spec"] = JsonValue.Create("NotIn")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"name\" NOT IN (@p0, @p1))", sql);
+    Assert.Equal(2, parameters.Count);
+    Assert.Equal("John", parameters["@p0"].ToString());
+    Assert.Equal("Ivan", parameters["@p1"].ToString());
+    
+    
+    // not_in lower_case reverse
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["spec"] = JsonValue.Create("NotIn"),
+     ["name"] = new JsonArray
+     {
+      JsonValue.Create("John"),
+      JsonValue.Create("Ivan")
+     }
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"name\" NOT IN (@p0, @p1))", sql);
+    Assert.Equal(2, parameters.Count);
+    Assert.Equal("John", parameters["@p0"].ToString());
+    Assert.Equal("Ivan", parameters["@p1"].ToString());
+   }
+   
+   
    
  }
