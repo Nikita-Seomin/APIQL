@@ -256,4 +256,80 @@ public static class JsonField
             _ => oper.ToLower() //throw new ArgumentException($"Operator \"{oper}\" not found")
         };
     }
+    
+    public static object ConvertElementToType(string element, JsonElement jsonElement)
+    {
+        switch (jsonElement.ValueKind)
+        {
+            case JsonValueKind.String:
+                return element;
+            case JsonValueKind.Number:
+                if (jsonElement.TryGetInt32(out int intValue))
+                {
+                    return Convert.ToInt32(element);
+                }
+                else if (jsonElement.TryGetDouble(out double doubleValue))
+                {
+                    return Convert.ToDouble(element);
+                }
+                break;
+            case JsonValueKind.True:
+            case JsonValueKind.False:
+                return Convert.ToBoolean(element);
+            default:
+                throw new NotSupportedException($"Тип {jsonElement.ValueKind} не поддерживается.");
+        }
+
+        return element;
+    }
+    
+    
+    public static object[] ConvertDataToArray(object fieldValue, JsonElement value)
+    {
+        if (value.ValueKind == JsonValueKind.Array)
+        {
+            var jsonArray = JsonSerializer.Deserialize<object[]>(value.GetRawText());
+            if (jsonArray == null)
+                throw new InvalidOperationException("Ошибка при десериализации JsonElement в массив.");
+
+            // Распознаем dataArr как строку и разделяем по запятой
+            var dataArr = fieldValue?.ToString()?.Split(',');
+
+            // Преобразуем элементы dataArr к соответствующим типам из jsonArray
+            object[] typedArray = new object[jsonArray.Length];
+            for (int i = 0; i < jsonArray.Length; i++)
+            {
+                if (i < dataArr.Length && jsonArray[i] is JsonElement jsonElement)
+                {
+                    typedArray[i] = JsonField.ConvertElementToType(dataArr[i], jsonElement);
+                }
+            }
+
+            return typedArray;
+        }
+        else if (fieldValue is string fieldValueStr)
+        {
+            // Если fieldValue строка, разделяем по запятой
+            var dataArr = fieldValueStr.Split(',');
+
+            object[] resultArray = new object[dataArr.Length];
+            for (int i = 0; i < dataArr.Length; i++)
+            {
+                if (int.TryParse(dataArr[i], out int intValue))
+                {
+                    // Преобразуем в int, если это возможно
+                    resultArray[i] = intValue;
+                }
+                else
+                {
+                    // Иначе оставляем как строку
+                    resultArray[i] = dataArr[i].Trim('"');
+                }
+            }
+
+            return resultArray;
+        }
+
+        return null!;
+    }
 }

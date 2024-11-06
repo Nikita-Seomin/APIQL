@@ -1579,5 +1579,111 @@
    }
    
    
-   
+   // spec additional
+   [Fact]
+   public void TestAdditionalSpecs()
+   {
+    //spec Between []
+    var qb = _db.Query("users as u")
+     .Select("u.id");
+
+    var query = new JsonObject
+    {
+     ["spec"] = JsonValue.Create("Between"),
+     ["age"] = new JsonArray
+     {
+      JsonValue.Create(10),
+      JsonValue.Create(20)
+     },
+    };
+    var api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    var compiler = new PostgresCompiler();
+    SqlResult result = compiler.Compile(qb);
+    string sql = result.Sql;
+    var parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"age\" BETWEEN @p0 AND @p1)", sql);
+    Assert.Equal(2, parameters.Count);
+    Assert.Equal(10, parameters["@p0"]);
+    Assert.Equal(20, parameters["@p1"]);
+    
+    
+    // spec Between str
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["spec"] = JsonValue.Create("Between"),
+     ["age"] = JsonValue.Create("10,20")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"age\" BETWEEN @p0 AND @p1)", sql);
+    Assert.Equal(2, parameters.Count);
+    Assert.Equal(10, parameters["@p0"]);
+    Assert.Equal(20, parameters["@p1"]);
+    
+    
+    // spec between []
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["spec"] = JsonValue.Create("between"),
+     ["age"] = new JsonArray
+     {
+      JsonValue.Create(10),
+      JsonValue.Create(20)
+     },
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"age\" BETWEEN @p0 AND @p1)", sql);
+    Assert.Equal(2, parameters.Count);
+    Assert.Equal(10, parameters["@p0"]);
+    Assert.Equal(20, parameters["@p1"]);
+    
+    
+    // spec between []
+    qb = _db.Query("users as u")
+     .Select("u.id");
+
+    query = new JsonObject
+    {
+     ["spec"] = JsonValue.Create("between"),
+     ["age"] = JsonValue.Create("10,20")
+    };
+    api = new ApiQueryLanguage(query, qb);
+    api.Execute();
+
+    // Генерация строки SQL из запроса
+    compiler = new PostgresCompiler();
+    result = compiler.Compile(qb);
+    sql = result.Sql;
+    parameters = result.NamedBindings;
+
+    Assert.Equal("SELECT \"u\".\"id\" FROM \"users\" AS \"u\" WHERE (\"age\" BETWEEN @p0 AND @p1)", sql);
+    Assert.Equal(2, parameters.Count);
+    Assert.Equal(10, parameters["@p0"]);
+    Assert.Equal(20, parameters["@p1"]);
+   }
  }

@@ -3,7 +3,7 @@ using SqlKata;
 using SqlKata.Compilers;
 using SqlKata.Execution;
 using SqlKata.Extensions;
-
+using System.Text.Json;
 namespace ApiQL.Language;
 using System;
 using ApiQL.Language;
@@ -318,5 +318,26 @@ public class ApiQueryBuilder
                 => q.WhereNotIn(fieldName, dataArr));   
         return _builder;
     }
+    
+    
+    public Query Between(string field, JsonElement value, string logicOperator)
+    {
+        string fieldName = JsonField.GetJsonFieldName(field, value);
+        object fieldValue = JsonField.GetJsonFieldValue(field, value);
+        // Получаем значения из JsonElement как массив 
+        var typedArray = JsonField.ConvertDataToArray(fieldValue, value);
+        if (typedArray.Length < 2)
+            throw new InvalidOperationException("Too few input parameters");
+        // Строим условия с помощью SqlKata
+        if (AbstractLanguage.IsOrOperator(logicOperator)) // если в составе оператора or
+            _builder.OrWhere(q
+                => q.WhereBetween(fieldName,typedArray[0],typedArray[1]));     
+        else
+            _builder.Where(q
+                => q.WhereBetween(fieldName, typedArray[0],typedArray[1]));   
+        return _builder;
+    }
+        
+        
 
 }
