@@ -60,6 +60,10 @@
               "target": "Package",
               "version": "[1.0.0, )"
             },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "SqlKata": {
               "target": "Package",
               "version": "[2.4.0, )"
@@ -77,6 +81,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

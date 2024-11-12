@@ -174,14 +174,17 @@ public class ApiQueryBuilder
         return _builder;
     }
     
-    public Query Eq(string field, object value)
+    public Query Eq(string field, object value, string logicOperator )
     {
         string fieldName = JsonField.GetJsonFieldName(field, value);
         object fieldValue = JsonField.GetJsonFieldValue(field, value);
-        object parameterValue = JsonField.GetJsonPropertyValue(value);
-        var dictionary = new Dictionary<string, object>();
-        dictionary.Add(fieldName, fieldValue);
-        _builder.Where(dictionary);
+        // object parameterValue = JsonField.GetJsonPropertyValue(value);
+        // var dictionary = new Dictionary<string, object>();
+        // dictionary.Add(fieldName, fieldValue);
+        if (AbstractLanguage.IsOrOperator(logicOperator))
+            _builder.OrWhere(fieldName, fieldValue);
+        else
+            _builder.Where( fieldName, fieldValue);
         return _builder;
        
     }
@@ -248,7 +251,7 @@ public class ApiQueryBuilder
     }
     
     
-    public Query Like(string field, object value, string logicOperator, string? specFlag)
+    public Query ILike(string field, object value, string logicOperator, string? specFlag)
     {
         string fieldName = JsonField.GetJsonFieldName(field, value);
         object fieldValue = JsonField.GetJsonFieldValue(field, value);
@@ -263,6 +266,22 @@ public class ApiQueryBuilder
                 => specFlag is null ?                                                                        // если запрос НЕ со spec
                     q.WhereLike(fieldName, fieldValue, false, "*") :      // добавляем ESCAPE "*"
                     q.WhereLike(fieldName, fieldValue, false));                                // Если есть specFlag, то БЕЗ ESCAPE "*"
+        return _builder;
+    }
+    
+    
+    
+    public Query Like(string field, object value, string logicOperator, string? specFlag)
+    {
+        string fieldName = JsonField.GetJsonFieldName(field, value);
+        object fieldValue = JsonField.GetJsonFieldValue(field, value);
+        // Строим условия с помощью SqlKata
+        if (AbstractLanguage.IsOrOperator(logicOperator))
+            _builder.OrWhere(q                                                                          
+                =>  q.WhereLike(fieldName, fieldValue));                      
+        else
+            _builder.Where(q                                                                          
+                =>  q.WhereLike(fieldName, fieldValue));                            
         return _builder;
     }
     

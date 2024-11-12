@@ -245,6 +245,7 @@ public static class JsonField
             "notlike" => "not_like",
             // "in" => new InInterpreter(data_),
             "notin" => "not_in",
+            "containsstring" => "contains_string",
             // "equals_any" => new EqualsAnyInterpreter(data_),
             // "not_equals_any" => new NotEqualsAnyInterpreter(data_),
             // "equals_all" => new EqualsAllInterpreter(data_),

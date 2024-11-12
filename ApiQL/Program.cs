@@ -1,23 +1,33 @@
-﻿using System.Text.Json;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Text.Json.Nodes;
 using ApiQL;
+using ApiQL.Language;
+using SqlKata;
+using SqlKata.Compilers;
 
-using BenchmarkDotNet.Running;
+var builder = WebApplication.CreateBuilder(args);
 
-//var summary = BenchmarkRunner.Run<Bench>();
+// Регистрация сервисов
+builder.Services.AddControllers(); // Добавляем поддержку контроллеров
 
-var jDoc = JsonDocument.Parse(Bench.json);
+// Добавьте здесь регистрацию других необходимых сервисов, например, для работы с БД или другим функционалом
 
-var a = jDoc.RootElement.EnumerateObject();
-        foreach (var item in a)
-        {
-            if (item.Value.ValueKind is JsonValueKind.Array)
-            {
+var app = builder.Build();
 
-            }
-            else
-            {
+// Настройка middleware
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
 
-            }
-        }
+app.UseRouting();
 
-int f = 0;
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers(); // Маршрутизируем запросы к контроллерам
+});
+
+app.Run();
