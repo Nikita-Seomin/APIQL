@@ -17,9 +17,9 @@
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.testEqualsSpecs&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=11689a17_002D3332_002D4086_002Da104_002D2c95a32afde9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestAdditionalSpecs #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=11689a17_002D3332_002D4086_002Da104_002D2c95a32afde9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestAdditionalSpecs #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate.TestAdditionalSpecs&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
@@ -64,7 +64,7 @@
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=82b6d609_002D8921_002D4ea0_002Da3af_002D7e0a595c464a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestAdditionalSpecs #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=82b6d609_002D8921_002D4ea0_002Da3af_002D7e0a595c464a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestAdditionalSpecs #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::7D503CBD-48D2-4336-B05C-8DA7F4257971::net8.0::tests.ApiQlUnitTestSeparate&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;

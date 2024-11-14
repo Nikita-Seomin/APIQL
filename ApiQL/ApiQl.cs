@@ -277,10 +277,15 @@ public class ApiQueryLanguage : AbstractLanguage
         if (_expression != null && _expression.Count > 0)
         {
             var expression = _expression;
-        
-            if (_expression.ContainsKey("where"))
+            
+            if (expression.ContainsKey("filter")) 
             {
-                expression = (JsonObject)_expression["where"];
+                expression = (JsonObject)expression["filter"];
+            }
+        
+            if (expression.ContainsKey("where"))
+            {
+                expression = (JsonObject)expression["where"];
             }
 
             if (expression.ContainsKey(SPEC))

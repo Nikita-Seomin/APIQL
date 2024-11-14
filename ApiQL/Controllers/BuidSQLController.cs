@@ -8,17 +8,25 @@ using SqlKata.Compilers;
 namespace ApiQL.Controllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("mapeditor/geojson")]
     public class QueryController : ControllerBase
     {
         [HttpPost]
-        public IActionResult GetSqlQuery([FromBody] JsonObject request)
-        {
+        [Route("{scheme}/{tableName}")] // передали схему и таблицу 
+        public IActionResult GetSqlQuery([FromRoute] string scheme, [FromRoute] string tableName,[FromBody] JsonObject request)
+        { 
             try
             {
+                // Извлечение параметров запроса
+                var cqlFilter = Request.Query["cql_filter"].ToString();
+                var srsName = Request.Query["srsname"].ToString();
+                
+                if (scheme == "registry" && int.TryParse(tableName, out var intTableName)) // если схема registry и tableName хранит int id то обернуть int в object_{id}_
+                    tableName = "object_" + tableName + "_";
+                
                 // Создайте начальный запрос к базе данных
-                var qb = new Query("users as u")           // убрать from ???
-                    .Select("u.id");                                   // убрать как появится логика select
+                var qb = new Query(scheme + "." + tableName)           // убрать from ???
+                     .Select("u.id");                                   // убрать как появится логика select
 
                 // Создайте экземпляр ApiQueryLanguage с JSON-запросом
                 var api = new ApiQueryLanguage(request, qb);
